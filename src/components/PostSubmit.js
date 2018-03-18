@@ -8,7 +8,7 @@ class SubmitPost extends Component {
                 <div className="content post-submit wrapper">
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-6 card card-info">
+                            <div className="col-md-5 card card-info">
                                 <h1>Submit Post</h1>
 
                                 <p> You are submitting a text-based post.
@@ -18,7 +18,7 @@ class SubmitPost extends Component {
                                 </p>
                             </div>
 
-                            <div className="col-md-6 card card-form">
+                            <div className="col-md-7 card card-form">
                                 <form>
                                     <label>Title</label>
                                     <input

@@ -3,8 +3,8 @@ import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import PostForm from "./PostSubmit";
 import PostList from "./PostList";
+import PostSingle from "./PostSingle";
 import logo from '../utils/logo-300px.png';
-import FontAwesome from  'react-fontawesome';
 
 class App extends Component {
 render() {
@@ -30,6 +30,10 @@ render() {
 
             <Route path="/submit" render={() => (
                 <PostForm/>
+            )}/>
+
+            <Route path="/post" render={() => (
+                <PostSingle/>
             )}/>
         </div>
         );

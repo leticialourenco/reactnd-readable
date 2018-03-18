@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Sidebar from './Sidebar';
+import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 
 class PostList extends Component {
@@ -8,25 +10,7 @@ class PostList extends Component {
                 <div className="content wrapper">
                     <div className="container-fluid">
                         <div className="row">
-                            <div className="sidebar col-md-2">
-                                <ul className="category-list">
-                                    <li><a href="/">
-                                        <FontAwesome name='home' />All Posts
-                                    </a></li>
-
-                                    <li><a href="/">
-                                        <FontAwesome name='globe' />React
-                                    </a></li>
-
-                                    <li><a href="/" className="active">
-                                        <FontAwesome name='cog' />Redux
-                                    </a></li>
-
-                                    <li><a href="/">
-                                        <FontAwesome name='compass' />Udacity
-                                    </a></li>
-                                </ul>
-                            </div>
+                            <Sidebar/>
 
                             <main className="posts col-sm-12 col-md-10">
                                 <div className="row sorting-header">
@@ -61,8 +45,11 @@ class PostList extends Component {
                                                 <FontAwesome name='caret-down' />
                                             </button>
                                         </span>
-
-                                            <a href="/" className="post-title">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut</a>
+                                            <Link to='/post'>
+                                                <a className="post-title">
+                                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                                </a>
+                                            </Link>
 
                                             <hr/>
 
