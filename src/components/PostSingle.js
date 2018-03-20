@@ -35,7 +35,9 @@ class PostSingle extends Component {
 
                                 by <span className="author">Rapha Draccon</span>
                                 <span className="separator"> | </span>
-                                <span className="category">on <a href="/">Redux</a></span>
+                                <span><a href="/">Edit</a></span>
+                                <span className="separator"> | </span>
+                                <span><a href="/">Delete</a></span>
                             </div>
 
                             <hr/>
@@ -68,10 +70,14 @@ class PostSingle extends Component {
                                         </button>
                                     </div>
 
-                                    <div className="info-box">
+                                    <div className="comment-info">
                                         <span className="timestamp">3 hours ago</span>
                                         <span className="separator"> | </span>
                                         by <span className="author">Rapha Draccon</span>
+                                        <span className="separator"> | </span>
+                                        <span><a href="/">Edit</a></span>
+                                        <span className="separator"> | </span>
+                                        <span><a href="/">Delete</a></span>
                                     </div>
 
                                     <div className="comment-body">

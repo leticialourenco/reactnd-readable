@@ -173,9 +173,9 @@ header {
 }
 
 .category-list a {
-    font-size: 13px;
+    font-size: 12px;
     border-left: solid 5px transparent;
-    padding: 20px 30px 20px;
+    padding: 15px 20px 15px;
     display: block;
     width: 100%;
 }
@@ -190,8 +190,26 @@ header {
 }
 
 .category-list a span {
-    padding: 0 25px 0 0;
+    padding: 0 20px 0 0;
     font-size: 18px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 12em;
+    width: 100%;
+    padding: 30px 10px;
+    background: rgba(0, 0, 0, .04);
+    opacity: .6;
+    text-align: center;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer span {
+    font-size: 18px;
+    padding: 0 5px 15px;
 }
 
 /* Home main content
@@ -320,19 +338,27 @@ header {
     color: #fff;
 }
 
-.post-item .post-info {
+.post-item .post-info,
+.comment-info {
     letter-spacing: 1px;
     font-size: 12px;
 }
 
-.post-info .separator {
+.post-info .separator,
+.comment-info .separator {
     opacity: .3;
     padding: 0 5px;
 }
 
-.post-item .post-info a {
+.post-item .post-info a,
+.comment-info a {
     text-transform: capitalize;
-    color: #ff3f18;
+    border-bottom: dashed 1px #ccc;
+    padding-bottom: 3px;
+}
+
+.separator-breakpoint {
+
 }
 
 /* Post Submit
@@ -484,7 +510,7 @@ textarea {
     border-left: solid 1px #eee;
 }
 
-.comment .info-box {
+.comment-info {
     padding-top: 5px;
 }
 

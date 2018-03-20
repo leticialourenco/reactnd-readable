@@ -23,6 +23,17 @@ class Sidebar extends Component {
                         <FontAwesome name='compass' />Udacity
                     </a></li>
                 </ul>
+
+                <div className="footer">
+                    <a href="https://github.com/leticialourenco/reactnd-readable" target="_blank">
+                        <FontAwesome name="github"/>
+                    </a>
+                    <a href="https://leticialourenco.com" target="_blank">
+                        <FontAwesome name="dribbble"/>
+                    </a>
+                    <br/>
+                    by Leticia Lourenco
+                </div>
             </div>
         )
     }

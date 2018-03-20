@@ -61,8 +61,12 @@ class PostList extends Component {
                                                 <span className="separator"> | </span>
 
                                                 by <span className="author">Rapha Draccon</span>
+
                                                 <span className="separator"> | </span>
-                                                <span className="category">on <a href="/">Redux</a></span>
+                                                <span><a href="/">Edit</a></span>
+
+                                                <span className="separator"> | </span>
+                                                <span><a href="/">Delete</a></span>
                                             </div>
                                         </li>
 
@@ -99,8 +103,12 @@ class PostList extends Component {
                                                 <span className="separator"> | </span>
 
                                                 by <span className="author">Dmitri Sokolov</span>
+
                                                 <span className="separator"> | </span>
-                                                <span className="category">on <a href="/">Udacity</a></span>
+                                                <span><a href="/">Edit</a></span>
+
+                                                <span className="separator"> | </span>
+                                                <span><a href="/">Delete</a></span>
                                             </div>
                                         </li>
 
@@ -138,8 +146,12 @@ class PostList extends Component {
                                                 <span className="separator"> | </span>
 
                                                 by <span className="author">Stan Kirdey</span>
+
                                                 <span className="separator"> | </span>
-                                                <span className="category">on <a href="/">React</a></span>
+                                                <span><a href="/">Edit</a></span>
+
+                                                <span className="separator"> | </span>
+                                                <span><a href="/">Delete</a></span>
                                             </div>
                                         </li>
                                     </ul>
