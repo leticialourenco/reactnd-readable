@@ -46,9 +46,9 @@ class PostList extends Component {
                                             </button>
                                         </span>
                                             <Link to='/post'>
-                                                <a className="post-title">
+                                                <span className="post-title">
                                                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                </a>
+                                                </span>
                                             </Link>
 
                                             <hr/>

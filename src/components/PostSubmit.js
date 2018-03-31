@@ -23,13 +23,11 @@ class SubmitPost extends Component {
                                     <label>Title</label>
                                     <input
                                         type="text"
-                                        onChange={""}
                                     />
 
                                     <label>Author</label>
                                     <input
                                         type="text"
-                                        onChange={""}
                                     />
 
                                     <label>
@@ -60,7 +58,7 @@ class SubmitPost extends Component {
                                         id=""
                                         cols="30"
                                         rows="10"
-                                        spellcheck="false"
+                                        spellCheck="false"
                                     />
                                     <div className="btn-container">
                                         <button className="btn-default">

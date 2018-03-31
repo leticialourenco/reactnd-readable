@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Route, Link, withRouter, Switch } from 'react-router-dom';
+
 import PostForm from "./PostSubmit";
 import PostList from "./PostList";
 import PostSingle from "./PostSingle";
-import logo from '../utils/logo-300px.png';
+
+import logo from '../resources/images/logo-300px.png';
 
 class App extends Component {
 render() {
@@ -12,7 +13,7 @@ render() {
         <div>
             <header className="header wrapper">
                 <div className="container small-container">
-                    <Link exact to="/">
+                    <Link to="/">
                         <img src={logo} className="logo" alt="logo" />
                     </Link>
 
@@ -24,20 +25,18 @@ render() {
                 </div>
             </header>
 
-            <Route exact path="/" render={() => (
-                <PostList/>
-            )}/>
+            <Switch>
+                <Route exact path="/" component={PostList} />
+                <Route path="/submit" component={PostForm} />
+                <Route path="/post"  component={PostSingle} />
 
-            <Route path="/submit" render={() => (
-                <PostForm/>
-            )}/>
-
-            <Route path="/post" render={() => (
-                <PostSingle/>
-            )}/>
+                <Route path="/:category" exact render={({match, location}) => (
+                    <PostList category={match.params.category} />
+                )} />
+            </Switch>
         </div>
         );
     }
 }
 
-export default App;
+export default withRouter(App);
