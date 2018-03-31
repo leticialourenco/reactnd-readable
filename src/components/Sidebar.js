@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import FontAwesome from 'react-fontawesome';
 import * as categoryActions from '../actions/Categories';
+import FontAwesome from 'react-fontawesome';
 
 class Sidebar extends Component {
     componentWillMount () {

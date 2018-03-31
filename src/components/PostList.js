@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import Sidebar from './Sidebar';
-import { Link } from 'react-router-dom';
+import PostListItem from "./PostListItem";
+import * as postActions from '../actions/Posts';
+import * as categoryActions from '../actions/Categories';
 import FontAwesome from 'react-fontawesome';
 
 class PostList extends Component {
+    componentWillMount () {
+        this.props.actions.getPosts();
+    }
+
     render() {
+        const { posts } = this.props;
+
         return (
             <div>
                 <div className="content wrapper">
@@ -26,6 +35,7 @@ class PostList extends Component {
                                             <li><a href="/">Lowest Rated</a></li>
                                         </ul>
                                     </div>
+
                                     <div className="col-md-2 col-lg-3 results-counter">
                                         <span>235</span> results
                                     </div>
@@ -33,127 +43,7 @@ class PostList extends Component {
 
                                 <div className="post-list-container">
                                     <ul>
-                                        <li className="post-item">
-                                        <span className="score-box">
-                                            <button>
-                                                <FontAwesome name='caret-up' />
-                                            </button>
-
-                                            <span className="score">405</span>
-
-                                            <button>
-                                                <FontAwesome name='caret-down' />
-                                            </button>
-                                        </span>
-                                            <Link to='/post'>
-                                                <span className="post-title">
-                                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                </span>
-                                            </Link>
-
-                                            <hr/>
-
-                                            <div className="post-info">
-                                                <span className="comment-counter">324</span> comments
-                                                <span className="separator"> | </span>
-
-                                                <span className="timestamp">3 hours ago</span>
-                                                <span className="separator"> | </span>
-
-                                                by <span className="author">Rapha Draccon</span>
-
-                                                <span className="separator"> | </span>
-                                                <span><a href="/">Edit</a></span>
-
-                                                <span className="separator"> | </span>
-                                                <span><a href="/">Delete</a></span>
-                                            </div>
-                                        </li>
-
-
-
-
-
-
-
-
-
-                                        <li className="post-item">
-                                        <span className="score-box">
-                                            <button>
-                                                <FontAwesome name='caret-up' />
-                                            </button>
-
-                                            <span className="score">0</span>
-
-                                            <button>
-                                                <FontAwesome name='caret-down' />
-                                            </button>
-                                        </span>
-
-                                            <a href="/" className="post-title">Consectetur adipiscing elit, sed do eiusmod?</a>
-
-                                            <hr/>
-
-                                            <div className="post-info">
-                                                <span className="comment-counter">0</span> comments
-                                                <span className="separator"> | </span>
-
-                                                <span className="timestamp">3 hours ago</span>
-                                                <span className="separator"> | </span>
-
-                                                by <span className="author">Dmitri Sokolov</span>
-
-                                                <span className="separator"> | </span>
-                                                <span><a href="/">Edit</a></span>
-
-                                                <span className="separator"> | </span>
-                                                <span><a href="/">Delete</a></span>
-                                            </div>
-                                        </li>
-
-
-
-
-
-
-
-
-
-
-                                        <li className="post-item">
-                                            <div className="score-box">
-                                                <button>
-                                                    <FontAwesome name='caret-up' />
-                                                </button>
-
-                                                <span className="score">1245</span>
-
-                                                <button>
-                                                    <FontAwesome name='caret-down' />
-                                                </button>
-                                            </div>
-
-                                            <a href="/" className="post-title">Lorem "Ipsum" dolor Sit Amet</a>
-
-                                            <hr/>
-
-                                            <div className="post-info">
-                                                <span className="comment-counter">23</span> comments
-                                                <span className="separator"> | </span>
-
-                                                <span className="timestamp">3 hours ago</span>
-                                                <span className="separator"> | </span>
-
-                                                by <span className="author">Stan Kirdey</span>
-
-                                                <span className="separator"> | </span>
-                                                <span><a href="/">Edit</a></span>
-
-                                                <span className="separator"> | </span>
-                                                <span><a href="/">Delete</a></span>
-                                            </div>
-                                        </li>
+                                        <PostListItem key={"post.id"} post={"post"} />
                                     </ul>
                                 </div>
                             </main>
@@ -165,4 +55,20 @@ class PostList extends Component {
     }
 }
 
-export default PostList
+function mapStateToProps (state) {
+    return {
+        posts: state.posts,
+        activeCategory: state.activeCategory
+    }
+}
+
+function mapDispatchToProps (dispatch) {
+    return {
+        actions: {
+            getPosts: () => dispatch(postActions.getPosts()),
+            setCategory: (category) => dispatch(categoryActions.setCategory(category ? category.path : null))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostList);

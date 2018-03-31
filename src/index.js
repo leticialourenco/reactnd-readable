@@ -4,10 +4,17 @@ import { BrowserRouter } from 'react-router-dom';
 import './resources/index.css';
 import App from './components/App';
 
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import rootReducer from './reducers/index'
+
+import categoriesReducer from "./reducers/Categories";
+import postsReducer from "./reducers/Posts";
+
+const rootReducer = combineReducers ({
+    ...postsReducer,
+    ...categoriesReducer
+});
 
 const store = createStore(
     rootReducer,
@@ -15,10 +22,10 @@ const store = createStore(
 );
 
 ReactDOM.render(
-        <Provider store={store}>
-            <BrowserRouter>
-                <App/>
-            </BrowserRouter>
-        </Provider>,
+    <Provider store={store}>
+        <BrowserRouter>
+            <App/>
+        </BrowserRouter>
+    </Provider>,
     document.getElementById('root')
 );
