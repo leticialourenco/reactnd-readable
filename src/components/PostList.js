@@ -9,10 +9,14 @@ import FontAwesome from 'react-fontawesome';
 class PostList extends Component {
     componentWillMount () {
         this.props.actions.getPosts();
+        this.props.actions.setCategory();
     }
 
     render() {
-        const { posts } = this.props;
+        const { posts, activeCategory } = this.props;
+
+        const filteredPosts = posts.filter(post =>
+            (activeCategory === null) || (post.category === activeCategory));
 
         return (
             <div>
@@ -37,13 +41,15 @@ class PostList extends Component {
                                     </div>
 
                                     <div className="col-md-2 col-lg-3 results-counter">
-                                        <span>235</span> results
+                                        <span>{ filteredPosts.length }</span> results
                                     </div>
                                 </div>
 
                                 <div className="post-list-container">
                                     <ul>
-                                        <PostListItem key={"post.id"} post={"post"} />
+                                        { filteredPosts.map((post) => (
+                                            <PostListItem key={post.id} post={post} />
+                                        ))}
                                     </ul>
                                 </div>
                             </main>

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import FontAwesome from 'react-fontawesome';
 
 class PostListItem extends Component {
     render() {
+        const { post } = this.props;
 
         return (
             <li className="post-item">
@@ -12,7 +14,9 @@ class PostListItem extends Component {
                         <FontAwesome name='caret-up' />
                     </button>
 
-                    <span className="score">405</span>
+                    <span className="score">
+                        { post.voteScore }
+                    </span>
 
                     <button>
                         <FontAwesome name='caret-down' />
@@ -21,25 +25,31 @@ class PostListItem extends Component {
 
                 <Link to='/post'>
                     <span className="post-title">
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        { post.title }
                     </span>
                 </Link>
 
                 <hr/>
 
                 <div className="post-info">
-                    <span className="comment-counter">324</span> comments
+                    <span className="comment-counter">
+                        { post.commentCount }
+                    </span> comments
                     <span className="separator"> | </span>
 
-                    <span className="timestamp">3 hours ago</span>
+                    <span className="timestamp">
+                        { moment.unix(post.timestamp).format('MMMM DD, h:mm A') }
+                    </span>
                     <span className="separator"> | </span>
 
-                    by <span className="author">Rapha Draccon</span>
-
+                    by <span className="author">
+                        { post.author }
+                    </span>
                     <span className="separator"> | </span>
+
                     <span><a href="/">Edit</a></span>
-
                     <span className="separator"> | </span>
+
                     <span><a href="/">Delete</a></span>
                 </div>
             </li>
