@@ -66,6 +66,16 @@ body {
     color: #7e8890;
 }
 
+::-moz-selection {
+    color: #fff;
+    background: #333;
+}
+
+::selection {
+    color: #fff;
+    background: #333;
+}
+
 h3 {
     margin-top: 30px;
     text-transform: uppercase;
@@ -88,6 +98,11 @@ a:focus,
 a:active {
     text-decoration: none;
     color: #8a959e;
+}
+
+.highlight {
+    font-weight: 500;
+    color: #ff3f18;
 }
 
 .btn-default {
@@ -155,7 +170,7 @@ header {
 }
 
 .content {
-    padding-top: 130px;
+    padding-top: 128px;
 }
 
 /* Sidebar

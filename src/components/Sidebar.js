@@ -33,7 +33,7 @@ class Sidebar extends Component {
                                 className={ category.path === activeCategory ? 'active' : '' }
                             >
 
-                                <FontAwesome name='caret-right'/>
+                                <FontAwesome name='arrow-circle-right'/>
                                 { category.name }
                             </Link>
                         </li>
