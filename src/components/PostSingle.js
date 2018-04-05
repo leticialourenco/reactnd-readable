@@ -2,27 +2,26 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import PostListItem from "./PostListItem";
 import * as postActions from "../actions/Posts";
 import * as categoryActions from "../actions/Categories";
 import FontAwesome from 'react-fontawesome';
-import PostListItem from "./PostListItem";
 
 class PostSingle extends Component {
 
     componentWillMount () {
         this.props.actions.getPost(this.props.postId);
-        this.props.actions.setCategory();
+        this.props.actions.setCategory(this.props.category);
     }
 
     render() {
         const { post } = this.props;
-        console.log(post);
 
         return (
             <div className="content single-post wrapper">
                 <div className="container-fluid">
                     <div className="row">
-                        <Sidebar/>
+                        <Sidebar />
 
                         <main className="posts col-sm-12 col-md-10">
 
@@ -75,7 +74,7 @@ class PostSingle extends Component {
 
                                 <div className="btn-container">
                                     <button className="btn-default">
-                                        Publish Post
+                                        Publish Comment
                                     </button>
                                 </div>
                             </div>
@@ -89,7 +88,8 @@ class PostSingle extends Component {
 
 function mapStateToProps (state) {
     return {
-        post: state.posts
+        post: state.post,
+        activeCategory: state.activeCategory
     }
 }
 
@@ -97,7 +97,7 @@ function mapDispatchToProps (dispatch) {
     return {
         actions: {
             getPost: (postId) => dispatch(postActions.getPost(postId)),
-            setCategory: (category) => dispatch(categoryActions.setCategory(category ? category.path : null))
+            setCategory: (category) => dispatch(categoryActions.setCategory(category))
         }
     }
 }

@@ -8,9 +8,7 @@ export function getCategoriesAction (categories) {
         type: GET_CATEGORIES,
         categories
     }
-}
-
-export const getCategories = () => dispatch => (
+} export const getCategories = () => dispatch => (
     API.fetchCategories()
         .then(response => dispatch(getCategoriesAction(response)))
 );

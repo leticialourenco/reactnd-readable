@@ -18,7 +18,7 @@ class Sidebar extends Component {
                 <ul className="category-list">
                     <li>
                         <Link to="/"
-                              onClick={() => actions.setCategory(null)}
+                              onClick={ () => actions.setCategory(null) }
                               className={ activeCategory === null ? 'active' : '' }
                         >
                             <FontAwesome name='home' />All Posts
@@ -29,8 +29,8 @@ class Sidebar extends Component {
                         <li key={category.path} className={category.path}>
                             <Link
                                 to={`/${category.path}`}
-                                onClick={ () => actions.setCategory(category) }
-                                className={ category.path === activeCategory ? 'active' : '' }
+                                onClick={ () => actions.setCategory(category.path) }
+                                className={ activeCategory === category.path ? 'active' : '' }
                             >
 
                                 <FontAwesome name='arrow-circle-right'/>
@@ -70,7 +70,7 @@ function mapDispatchToProps (dispatch) {
     return {
         actions: {
             getCategories: () => dispatch(categoryActions.getCategories()),
-            setCategory: (category) => dispatch(categoryActions.setCategory(category ? category.path : null))
+            setCategory: (category) => dispatch(categoryActions.setCategory(category))
         }
     }
 }
