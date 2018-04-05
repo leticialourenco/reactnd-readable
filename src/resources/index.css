@@ -469,6 +469,16 @@ textarea {
  */
 .single-post .post-item {
     background: #fff;
+    padding: 40px 0 0;
+    list-style: none;
+}
+
+.single-post .posts {
+    padding: 0 50px 50px;
+}
+
+.single-post .post-title {
+    cursor: auto;
 }
 
 .single-post .post-title,

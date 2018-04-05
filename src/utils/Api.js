@@ -15,3 +15,8 @@ export const fetchPosts = () => {
     return fetch(`${api}/posts`, { headers })
         .then(response => response.json())
 };
+
+export const fetchPost = (id) => {
+    return fetch(`${api}/posts/${id}`, { headers })
+        .then(response => response.json())
+};

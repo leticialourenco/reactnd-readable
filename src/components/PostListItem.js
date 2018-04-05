@@ -23,7 +23,7 @@ class PostListItem extends Component {
                     </button>
                 </span>
 
-                <Link to='/post'>
+                <Link to={`/${post.category}/${post.id}`}>
                     <span className="post-title">
                         { post.title }
                     </span>

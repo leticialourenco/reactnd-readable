@@ -28,10 +28,13 @@ render() {
             <Switch>
                 <Route exact path="/" component={PostList} />
                 <Route path="/submit" component={PostForm} />
-                <Route path="/post"  component={PostSingle} />
 
-                <Route path="/:category" exact render={({match, location}) => (
+                <Route path="/:category" exact render={({ match }) => (
                     <PostList category={match.params.category} />
+                )} />
+
+                <Route path="/:category/:postId" exact render={({ match }) => (
+                    <PostSingle category={match.params.category} postId={match.params.postId} />
                 )} />
             </Switch>
         </div>
