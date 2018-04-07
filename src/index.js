@@ -10,10 +10,12 @@ import { Provider } from 'react-redux';
 
 import categoriesReducer from "./reducers/Categories";
 import postsReducer from "./reducers/Posts";
+import commentsReducer from "./reducers/Comments";
 
 const rootReducer = combineReducers ({
+    ...categoriesReducer,
     ...postsReducer,
-    ...categoriesReducer
+    ...commentsReducer
 });
 
 const store = createStore(

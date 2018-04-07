@@ -303,16 +303,16 @@ header {
     background: #f9f9fa;
 }
 
-.post-item .score-box {
+.score-box {
     width: 120px;
     float: left;
 }
 
-.post-item .score {
+.score {
     padding: 0 10px;
 }
 
-.post-item .score-box button {
+.score-box button {
     font-size: 20px;
     background: #f9f9fa;
     border: none;
@@ -537,6 +537,7 @@ textarea {
 
 .comment-info {
     padding-top: 5px;
+    line-height: 27px;
 }
 
 .comment-body {
@@ -613,6 +614,7 @@ textarea {
 
     .post-item {
         padding: 40px 15px;
+        text-align: center;
     }
 
     .post-item:nth-child(1) {
@@ -656,5 +658,9 @@ textarea {
 
     .single-post .post-info .separator:nth-child(4) {
         display: inline-block;
+    }
+
+    .single-post .posts {
+        padding: 0 20px 30px;
     }
 }

@@ -20,3 +20,8 @@ export const fetchPost = (id) => {
     return fetch(`${api}/posts/${id}`, { headers })
         .then(response => response.json())
 };
+
+export const fetchComments = (id) => {
+    return fetch(`${api}/posts/${id}/comments`, { headers })
+        .then(response => response.json())
+};
