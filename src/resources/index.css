@@ -258,6 +258,7 @@ header {
 
 .sorting-header li a {
     padding: 10px 20px;
+    cursor: pointer;
 }
 
 .sorting-header a:hover,

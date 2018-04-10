@@ -7,6 +7,25 @@ import * as postActions from '../actions/Posts';
 import * as categoryActions from '../actions/Categories';
 import FontAwesome from 'react-fontawesome';
 
+const sortingOptions = [
+    {
+        option:"newest",
+        name: "Newest"
+    },
+    {
+        option:"oldest",
+        name: "Oldest"
+    },
+    {
+        option:"highest-rated",
+        name: "Highest Rated"
+    },
+    {
+        option:"lowest-rated",
+        name: "Lowest Rated"
+    }
+];
+
 class PostList extends Component {
     componentWillMount () {
         this.props.actions.getPosts();
@@ -14,7 +33,7 @@ class PostList extends Component {
     }
 
     render() {
-        const { posts, activeCategory } = this.props;
+        const { posts, activeCategory, sortBy, actions } = this.props;
 
         const filteredPosts = posts.filter(post =>
             (activeCategory === null) || (post.category === activeCategory));
@@ -36,10 +55,14 @@ class PostList extends Component {
                                                         <FontAwesome name='sort' />
                                                         <span>Sort By</span>
                                                     </li>
-                                                    <li><a href="/" className="active">Newest</a></li>
-                                                    <li><a href="/">Oldest</a></li>
-                                                    <li><a href="/">Highest Rated</a></li>
-                                                    <li><a href="/">Lowest Rated</a></li>
+
+                                                    { sortingOptions.map((item) => (
+                                                        <li key={item.option} className="sort-option">
+                                                            <a onClick={() => actions.sortPosts(item.option)}
+                                                               className={ sortBy === item.option ? 'active' : '' }
+                                                            >  { item.name } </a>
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </div>
 
@@ -82,10 +105,12 @@ class PostList extends Component {
     }
 }
 
+
 function mapStateToProps (state) {
     return {
         posts: state.posts,
-        activeCategory: state.activeCategory
+        activeCategory: state.activeCategory,
+        sortBy: state.sortBy
     }
 }
 
@@ -93,7 +118,8 @@ function mapDispatchToProps (dispatch) {
     return {
         actions: {
             getPosts: () => dispatch(postActions.getPosts()),
-            setCategory: (category) => dispatch(categoryActions.setCategory(category ? category.path : null))
+            setCategory: (category) => dispatch(categoryActions.setCategory(category ? category.path : null)),
+            sortPosts: (sortBy) => dispatch(postActions.sortPosts(sortBy))
         }
     }
 }

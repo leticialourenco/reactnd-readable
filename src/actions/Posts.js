@@ -2,6 +2,7 @@ import * as API from '../utils/Api';
 
 export const GET_POSTS = 'GET_POSTS';
 export const GET_POST = 'GET_POST';
+export const SORT_POSTS = 'SORT_POSTS';
 
 export function getPostsAction (posts) {
     return {
@@ -14,7 +15,6 @@ export function getPostsAction (posts) {
 );
 
 
-
 export function getPostAction (post) {
     return {
         type: GET_POST,
@@ -24,3 +24,11 @@ export function getPostAction (post) {
     API.fetchPost(id)
         .then(response => dispatch(getPostAction(response)))
 );
+
+
+export function sortPosts (sortBy) {
+    return {
+        type: SORT_POSTS,
+        sortBy
+    }
+}
