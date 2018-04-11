@@ -1,4 +1,5 @@
-const api = 'http://localhost:3001';
+import uuidv4 from "uuid/v4";
+const api = "http://localhost:3001";
 let token = Math.random().toString().slice(2);
 
 const headers = {
@@ -19,6 +20,26 @@ export const fetchPosts = () => {
 export const fetchPost = (id) => {
     return fetch(`${api}/posts/${id}`, { headers })
         .then(response => response.json())
+};
+
+export const addPost = ({ title, author, category, body }) => {
+    const post = {
+        title,
+        author,
+        category,
+        body,
+        id: uuidv4(),
+        timestamp: Date.now()
+    };
+
+    return fetch(`${api}/posts`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(post)
+    }).then(response => response.json())
 };
 
 export const fetchComments = (id) => {

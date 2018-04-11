@@ -2,6 +2,7 @@ import * as API from '../utils/Api';
 
 export const GET_POSTS = 'GET_POSTS';
 export const GET_POST = 'GET_POST';
+export const SUBMIT_POST = 'SUBMIT_POST';
 export const SORT_POSTS = 'SORT_POSTS';
 
 export function getPostsAction (posts) {
@@ -23,6 +24,17 @@ export function getPostAction (post) {
 } export const getPost = (id) => dispatch => (
     API.fetchPost(id)
         .then(response => dispatch(getPostAction(response)))
+);
+
+
+export function submitPostAction (post) {
+    return {
+        type: SUBMIT_POST,
+        post
+    }
+} export const submitPost = ({ title, author, category, body }) => dispatch => (
+    API.addPost({ title, author, category, body })
+        .then(response => dispatch(submitPostAction(response)))
 );
 
 

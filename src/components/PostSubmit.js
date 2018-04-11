@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import * as postActions from "../actions/Posts";
 import FontAwesome from 'react-fontawesome';
 
 class SubmitPost extends Component {
+    state = {
+        title: "",
+        author: "",
+        category: "",
+        body: ""
+    };
+
+    createPost = (event) => {
+        event.preventDefault();
+        this.props.actions.submitPost(this.state);
+    };
+
     render() {
         return (
             <div>
@@ -19,37 +34,33 @@ class SubmitPost extends Component {
                             </div>
 
                             <div className="col-md-7 card card-form">
-                                <form>
+                                <form onSubmit={ this.createPost }>
                                     <label>Title</label>
                                     <input
                                         type="text"
+                                        value={ this.state.title }
+                                        onChange={ (event) => this.setState({ title: event.target.value }) }
                                     />
 
                                     <label>Author</label>
                                     <input
                                         type="text"
+                                        value={ this.state.author }
+                                        onChange={ (event) => this.setState({ author: event.target.value }) }
                                     />
 
-                                    <label>
-                                        Category
-                                        <FontAwesome
-                                            name="caret-down"
-                                        />
+                                    <label> Category
+                                        <FontAwesome name="caret-down" />
                                     </label>
-                                    <select name="" id="">
-                                        <option value=""></option>
-
-                                        <option value="Redux">
-                                            Redux
-                                        </option>
-
-                                        <option value="React">
-                                            React
-                                        </option>
-
-                                        <option value="Udacity">
-                                            Udacity
-                                        </option>
+                                    <select
+                                        name="category"
+                                        value={this.state.category}
+                                        onChange={ (event) => this.setState({ category: event.target.value }) }
+                                    >
+                                        <option value="" disabled> </option>
+                                        <option value="redux"> Redux </option>
+                                        <option value="react"> React </option>
+                                        <option value="udacity"> Udacity </option>
                                     </select>
 
                                     <label>Text</label>
@@ -59,9 +70,15 @@ class SubmitPost extends Component {
                                         cols="30"
                                         rows="10"
                                         spellCheck="false"
+                                        value={this.state.body}
+                                        onChange={ (event) => this.setState({ body: event.target.value }) }
                                     />
+
                                     <div className="btn-container">
-                                        <button className="btn-default">
+                                        <button
+                                            type="submit"
+                                            className="btn-default"
+                                        >
                                             Publish Post
                                         </button>
                                     </div>
@@ -75,4 +92,18 @@ class SubmitPost extends Component {
     }
 }
 
-export default SubmitPost
+function mapStateToProps (state) {
+    return {
+
+    }
+}
+
+function mapDispatchToProps (dispatch) {
+    return {
+        actions: {
+            submitPost: (properties) => dispatch(postActions.submitPost(properties))
+        }
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SubmitPost))
