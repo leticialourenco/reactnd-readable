@@ -38,7 +38,7 @@ class PostListItem extends Component {
                     <span className="separator"> | </span>
 
                     <span className="timestamp">
-                        { moment.unix(post.timestamp).format('MMMM DD, h:mm A') }
+                        { moment(post.timestamp).format('MMMM DD, YY') }
                     </span>
                     <span className="separator"> | </span>
 

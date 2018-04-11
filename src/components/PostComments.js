@@ -31,7 +31,7 @@ class PostComments extends Component {
 
                         <div className="comment-info">
                             <span className="timestamp">
-                                { moment.unix(comment.timestamp).format('MMMM DD, h:mm A') }
+                                { moment(comment.timestamp).format('MMMM DD, YY') }
                             </span>
 
                             <span className="separator"> | </span>
