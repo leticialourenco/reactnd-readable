@@ -14,7 +14,13 @@ class SubmitPost extends Component {
 
     createPost = (event) => {
         event.preventDefault();
-        this.props.actions.submitPost(this.state);
+
+        return this.props.actions.submitPost(this.state)
+            .then(response => this.redirectToPost(response.post.category, response.post.id));
+    };
+
+    redirectToPost = (category, id) => {
+        this.props.history.push(`/${category}/${id}`);
     };
 
     render() {
@@ -54,7 +60,7 @@ class SubmitPost extends Component {
                                     </label>
                                     <select
                                         name="category"
-                                        value={this.state.category}
+                                        value={ this.state.category }
                                         onChange={ (event) => this.setState({ category: event.target.value }) }
                                     >
                                         <option value="" disabled> </option>
