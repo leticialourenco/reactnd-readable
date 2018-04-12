@@ -449,6 +449,7 @@ textarea {
 select {
     background: #fff;
     border-radius: 0;
+    text-transform: capitalize;
 }
 
 textarea {

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as postActions from "../actions/Posts";
 import FontAwesome from 'react-fontawesome';
+import * as categoryActions from "../actions/Categories";
 
 class SubmitPost extends Component {
     state = {
@@ -23,7 +24,13 @@ class SubmitPost extends Component {
         this.props.history.push(`/${category}/${id}`);
     };
 
+    componentWillMount () {
+        this.props.actions.getCategories();
+    }
+
     render() {
+        const { categories } = this.props.categories;
+
         return (
             <div>
                 <div className="content post-submit wrapper">
@@ -58,15 +65,15 @@ class SubmitPost extends Component {
                                     <label> Category
                                         <FontAwesome name="caret-down" />
                                     </label>
-                                    <select
-                                        name="category"
+                                    <select name="category"
                                         value={ this.state.category }
-                                        onChange={ (event) => this.setState({ category: event.target.value }) }
-                                    >
+                                        onChange={ (event) => this.setState({ category: event.target.value }) }>
+
                                         <option value="" disabled> </option>
-                                        <option value="redux"> Redux </option>
-                                        <option value="react"> React </option>
-                                        <option value="udacity"> Udacity </option>
+
+                                        {   categories.map((category) => (
+                                            <option key={ category.path } value={ category.path }>{ category.name }</option>
+                                        ))}
                                     </select>
 
                                     <label>Text</label>
@@ -100,13 +107,14 @@ class SubmitPost extends Component {
 
 function mapStateToProps (state) {
     return {
-
+        categories: state.categories
     }
 }
 
 function mapDispatchToProps (dispatch) {
     return {
         actions: {
+            getCategories: () => dispatch(categoryActions.getCategories()),
             submitPost: (properties) => dispatch(postActions.submitPost(properties))
         }
     }
