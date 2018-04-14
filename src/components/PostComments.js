@@ -6,7 +6,7 @@ import moment from "moment/moment";
 class PostComments extends Component {
     render () {
         const { comments } = this.props;
-        console.log(comments);
+
         return (
             <div className="comments">
                 <h3>Comments
@@ -56,7 +56,8 @@ class PostComments extends Component {
 
                 <h3>Leave your comment</h3>
 
-                <textarea name="" id="" rows="5"></textarea>
+                <textarea name="" id="" rows="5">
+                </textarea>
 
                 <div className="btn-container">
                     <button className="btn-default">

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Link, withRouter, Switch } from 'react-router-dom';
 
-import PostForm from "./PostSubmit";
+import PostEdit from "./PostEdit";
+import PostSubmit from "./PostSubmit";
 import PostList from "./PostList";
 import PostSingle from "./PostSingle";
 
@@ -27,7 +28,7 @@ render() {
 
             <Switch>
                 <Route exact path="/" component={PostList} />
-                <Route path="/submit" component={PostForm} />
+                <Route path="/submit" component={PostSubmit} />
 
                 <Route path="/:category" exact render={({ match }) => (
                     <PostList category={match.params.category} />
@@ -35,6 +36,10 @@ render() {
 
                 <Route path="/:category/:postId" exact render={({ match }) => (
                     <PostSingle category={match.params.category} postId={match.params.postId} />
+                )} />
+
+                <Route path="/:category/:postId/edit" exact render={({ match }) => (
+                    <PostEdit category={match.params.category} postId={match.params.postId} />
                 )} />
             </Switch>
         </div>

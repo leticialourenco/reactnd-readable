@@ -467,6 +467,24 @@ textarea {
     text-align: center;
 }
 
+/* Post Edit
+ */
+.post-edit .card-info {
+    border-radius: 5px 5px 0 0;
+    margin: 50px 0 0;
+    padding: 40px 70px;
+    min-height: 5px;
+}
+
+.post-edit .card-form {
+    border-radius: 0 0 5px 5px;
+    margin-top: 0;
+}
+
+.post-edit .disabled {
+    opacity: .5;
+}
+
 /* Post Single
  */
 .single-post .post-item {

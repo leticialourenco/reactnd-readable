@@ -47,7 +47,11 @@ class PostListItem extends Component {
                     </span>
                     <span className="separator"> | </span>
 
-                    <span><a href="/">Edit</a></span>
+                    <span>
+                        <Link to={`/${post.category}/${post.id}/edit`}>
+                            Edit
+                        </Link>
+                    </span>
                     <span className="separator"> | </span>
 
                     <span><a href="/">Delete</a></span>

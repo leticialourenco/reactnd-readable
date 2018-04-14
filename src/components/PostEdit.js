@@ -2,21 +2,33 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as postActions from "../actions/Posts";
-import * as categoryActions from "../actions/Categories";
 import FontAwesome from 'react-fontawesome';
 
-class SubmitPost extends Component {
+class PostEdit extends Component {
     state = {
         title: "",
         author: "",
         category: "",
-        body: ""
+        body: "",
+        id: ""
     };
 
-    createPost = (event) => {
+    addDataToForm = () => {
+        const { post } = this.props;
+
+        this.setState({
+            title: post.title,
+            author: post.author,
+            category: post.category,
+            body: post.body,
+            id: post.id
+        });
+    };
+
+    editPost = (event) => {
         event.preventDefault();
 
-        return this.props.actions.submitPost(this.state)
+        return this.props.actions.editPost(this.state)
             .then(response => this.redirectToPost(response.post.category, response.post.id));
     };
 
@@ -25,29 +37,26 @@ class SubmitPost extends Component {
     };
 
     componentWillMount () {
-        this.props.actions.getCategories();
+        this.props.actions.getPost(this.props.postId)
+            .then(this.addDataToForm);
     }
 
     render() {
-        const { categories } = this.props.categories;
-
         return (
             <div>
-                <div className="content post-submit wrapper">
+                <div className="content post-submit post-edit wrapper">
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-5 card card-info">
-                                <h1>Submit Post</h1>
-
-                                <p> You are submitting a text-based post.
-                                    Feel free to speak your mind.
-                                    A title is required, but expanding further in the text field is not.
-                                    Remember to select the category that would better fit into your post's subject.
-                                </p>
+                            <div className="col-lg-2"> </div>
+                            <div className="col-lg-8 card card-info">
+                                <h1>Edit Post</h1>
                             </div>
+                        </div>
 
-                            <div className="col-md-7 card card-form">
-                                <form onSubmit={ this.createPost }>
+                        <div className="row">
+                            <div className="col-lg-2"> </div>
+                            <div className="col-lg-8 card card-form">
+                                <form onSubmit={ this.editPost }>
                                     <label>Title</label>
                                     <input
                                         type="text"
@@ -60,23 +69,19 @@ class SubmitPost extends Component {
                                     <input
                                         type="text"
                                         value={ this.state.author }
-                                        onChange={ (event) => this.setState({ author: event.target.value }) }
+                                        className="disabled"
                                         spellCheck="false"
                                     />
 
                                     <label> Category
                                         <FontAwesome name="caret-down" />
                                     </label>
-                                    <select name="category"
+                                    <input
+                                        type="text"
                                         value={ this.state.category }
-                                        onChange={ (event) => this.setState({ category: event.target.value }) }>
-
-                                        <option value="" disabled> </option>
-
-                                        {   categories.map((category) => (
-                                            <option key={ category.path } value={ category.path }>{ category.name }</option>
-                                        ))}
-                                    </select>
+                                        className="disabled"
+                                        spellCheck="false"
+                                    />
 
                                     <label>Text</label>
                                     <textarea
@@ -94,7 +99,7 @@ class SubmitPost extends Component {
                                             type="submit"
                                             className="btn-default"
                                         >
-                                            Publish Post
+                                            Save & Publish
                                         </button>
                                     </div>
                                 </form>
@@ -109,17 +114,17 @@ class SubmitPost extends Component {
 
 function mapStateToProps (state) {
     return {
-        categories: state.categories
+        post: state.post
     }
 }
 
 function mapDispatchToProps (dispatch) {
     return {
         actions: {
-            getCategories: () => dispatch(categoryActions.getCategories()),
-            submitPost: (properties) => dispatch(postActions.submitPost(properties))
+            editPost: (post) => dispatch(postActions.editPost(post)),
+            getPost: (postId) => dispatch(postActions.getPost(postId))
         }
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SubmitPost))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostEdit))

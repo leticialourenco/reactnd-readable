@@ -3,6 +3,7 @@ import * as API from '../utils/Api';
 export const GET_POSTS = 'GET_POSTS';
 export const GET_POST = 'GET_POST';
 export const SUBMIT_POST = 'SUBMIT_POST';
+export const EDIT_POST = 'EDIT_POST';
 export const SORT_POSTS = 'SORT_POSTS';
 
 export function getPostsAction (posts) {
@@ -35,6 +36,17 @@ export function submitPostAction (post) {
 } export const submitPost = ({ title, author, category, body }) => dispatch => (
     API.addPost({ title, author, category, body })
         .then(response => dispatch(submitPostAction(response)))
+);
+
+
+export function editPostAction (post) {
+    return {
+        type: EDIT_POST,
+        post
+    }
+} export const editPost = (post) => dispatch => (
+    API.editPost(post)
+        .then(response => dispatch(editPostAction(response)))
 );
 
 

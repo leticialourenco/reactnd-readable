@@ -2,6 +2,7 @@ import {
     GET_POSTS,
     GET_POST,
     SUBMIT_POST,
+    EDIT_POST,
     SORT_POSTS
 } from "../actions/Posts";
 
@@ -13,6 +14,9 @@ function posts (state = [], action) {
             return action.posts;
 
         case SUBMIT_POST:
+            return state;
+
+        case EDIT_POST:
             return state;
 
         case SORT_POSTS:
@@ -32,7 +36,7 @@ function post (state = [], action) {
     }
 }
 
-function sortBy (state = 'newest', action) {
+function sortBy (state = '', action) {
     switch (action.type) {
         case SORT_POSTS:
             return action.sortBy;
