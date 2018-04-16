@@ -26,8 +26,7 @@ class PostSingle extends Component {
                         <Sidebar />
 
                         <main className="posts col-sm-12 col-md-10">
-
-                            <PostListItem post={post} />
+                            <PostListItem post={post} singlePostPage={true}/>
 
                             <hr/>
 

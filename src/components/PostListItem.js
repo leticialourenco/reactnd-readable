@@ -7,6 +7,14 @@ import FontAwesome from 'react-fontawesome';
 
 class PostListItem extends Component {
 
+    handleDelete (post) {
+        this.props.actions.deletePost(post);
+
+        if (this.props.singlePostPage === true) {
+            window.location.replace("/");
+        }
+    }
+
     render() {
         const { post, actions } = this.props;
 
@@ -61,7 +69,11 @@ class PostListItem extends Component {
                     </span>
                     <span className="separator"> | </span>
 
-                    <span><a href="/">Delete</a></span>
+                    <span>
+                        <button onClick={ () => this.handleDelete(post) } >
+                            Delete
+                        </button>
+                    </span>
                 </div>
             </li>
         )
@@ -71,7 +83,8 @@ class PostListItem extends Component {
 function mapDispatchToProps (dispatch) {
     return {
         actions: {
-            votePost: (post, option) => dispatch(postActions.votePost(post, option))
+            votePost: (post, option) => dispatch(postActions.votePost(post, option)),
+            deletePost: (post) => dispatch(postActions.deletePost(post))
         }
     }
 }

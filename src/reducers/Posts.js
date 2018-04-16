@@ -4,20 +4,22 @@ import {
     SUBMIT_POST,
     EDIT_POST,
     VOTE_POST,
+    DELETE_POST,
     SORT_POSTS
 } from "../actions/Posts";
 
 import { postsSorter } from '../utils/PostsSorterHelper';
 
 function posts (state = [], action) {
-    const nextState = [ ...state];
-    let postLocation;
-
     switch (action.type) {
         case GET_POSTS:
             return action.posts;
 
         case VOTE_POST:
+        case DELETE_POST:
+            const nextState = [ ...state];
+            let postLocation;
+
             postLocation = nextState.findIndex(post => post.id === action.post.id);
             nextState[postLocation] = { ...action.post };
             return nextState;
@@ -37,6 +39,7 @@ function post (state = [], action) {
         case GET_POST:
         case VOTE_POST:
             return action.post;
+
         default:
             return state;
     }

@@ -367,10 +367,19 @@ header {
 }
 
 .post-item .post-info a,
-.comment-info a {
+.comment-info a,
+.post-item .post-info button,
+.comment-info button {
     text-transform: capitalize;
+    border: 0;
     border-bottom: dashed 1px #ccc;
-    padding-bottom: 3px;
+    padding: 0 0 3px 0;
+    font-weight: 400;
+    color: #8a959e;
+    letter-spacing: 1px;
+    text-decoration: none;
+    line-height: 15px;
+    background: transparent;
 }
 
 .separator-breakpoint {

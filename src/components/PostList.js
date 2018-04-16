@@ -36,7 +36,8 @@ class PostList extends Component {
         const { posts, activeCategory, sortBy, actions } = this.props;
 
         const filteredPosts = posts.filter(post =>
-            (activeCategory === null) || (post.category === activeCategory));
+            ((activeCategory === null) || (post.category === activeCategory)) && (post.deleted === false)
+        );
 
         return (
             <div>
@@ -95,7 +96,7 @@ class PostList extends Component {
                                             </Link>
                                         </p>
                                     </div>
-                                    }
+                                }
                             </main>
                         </div>
                     </div>
