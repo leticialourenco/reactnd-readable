@@ -56,6 +56,17 @@ export const editPost = (post) => {
     }).then(response => response.json())
 };
 
+export const votePost = (post, option) => {
+    return fetch(`${api}/posts/${post.id}`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ option })
+    }).then(response => response.json())
+};
+
 export const fetchComments = (id) => {
     return fetch(`${api}/posts/${id}/comments`, { headers })
         .then(response => response.json())

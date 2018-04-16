@@ -4,6 +4,7 @@ export const GET_POSTS = 'GET_POSTS';
 export const GET_POST = 'GET_POST';
 export const SUBMIT_POST = 'SUBMIT_POST';
 export const EDIT_POST = 'EDIT_POST';
+export const VOTE_POST = 'VOTE_POST';
 export const SORT_POSTS = 'SORT_POSTS';
 
 export function getPostsAction (posts) {
@@ -49,6 +50,16 @@ export function editPostAction (post) {
         .then(response => dispatch(editPostAction(response)))
 );
 
+
+export function votePostAction (post) {
+    return {
+        type: VOTE_POST,
+        post
+    }
+} export const votePost = (post, option) => dispatch => (
+    API.votePost(post, option)
+        .then(response => dispatch(votePostAction(response)))
+);
 
 export function sortPosts (sortBy) {
     return {

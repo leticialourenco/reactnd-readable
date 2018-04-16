@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import * as postActions from "../actions/Posts";
 import moment from 'moment';
 import FontAwesome from 'react-fontawesome';
 
 class PostListItem extends Component {
+
     render() {
-        const { post } = this.props;
+        const { post, actions } = this.props;
 
         return (
             <li className="post-item">
                 <span className="score-box">
-                    <button>
+                    <button
+                        onClick={ () => actions.votePost(post, 'upVote') }
+                    >
                         <FontAwesome name='caret-up' />
                     </button>
 
@@ -18,7 +23,9 @@ class PostListItem extends Component {
                         { post.voteScore }
                     </span>
 
-                    <button>
+                   <button
+                       onClick={ () => actions.votePost(post, 'downVote') }
+                   >
                         <FontAwesome name='caret-down' />
                     </button>
                 </span>
@@ -61,4 +68,12 @@ class PostListItem extends Component {
     }
 }
 
-export default PostListItem;
+function mapDispatchToProps (dispatch) {
+    return {
+        actions: {
+            votePost: (post, option) => dispatch(postActions.votePost(post, option))
+        }
+    }
+}
+
+export default connect('',mapDispatchToProps)(PostListItem)
