@@ -20,17 +20,23 @@ class PostComments extends Component {
         return this.props.actions.submitComment({ author, body, parentId })
     };
 
+    handleDelete (comment) {
+        this.props.actions.deleteComment(comment);
+    };
 
     render () {
         const { comments } = this.props;
 
+        const filteredComments = comments.filter(comment => !(comment.deleted));
+
         return (
             <div className="comments" id="comments">
                 <h3>Comments
-                    <span>({ comments.length })</span>
+                    <span>({ filteredComments.length })</span>
                 </h3>
 
-                { comments.map((comment) => (
+                { filteredComments.map((comment) => (
+
                     <div className="comment" key={ comment.id }>
                         <div className="score-box">
                             <button>
@@ -60,7 +66,9 @@ class PostComments extends Component {
                             <span><a href="/">Edit</a></span>
 
                             <span className="separator"> | </span>
-                            <span><a href="/">Delete</a></span>
+                            <button onClick={ () => this.handleDelete(comment) } >
+                                Delete
+                            </button>
                         </div>
 
                         <div className="comment-body">
@@ -118,7 +126,8 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
     return {
         actions: {
-            submitComment: (properties) => dispatch(commentActions.submitComment(properties))
+            submitComment: (properties) => dispatch(commentActions.submitComment(properties)),
+            deleteComment: (comment) => dispatch(commentActions.deleteComment(comment))
         }
     }
 }

@@ -79,7 +79,6 @@ export const fetchComments = (id) => {
         .then(response => response.json())
 };
 
-
 export const addComment = ({ author, body, parentId }) => {
     const comment = {
         author,
@@ -96,5 +95,12 @@ export const addComment = ({ author, body, parentId }) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(comment)
+    }).then(response => response.json())
+};
+
+export const deleteComment = (comment) => {
+    return fetch(`${api}/comments/${comment.id}`, {
+        method: 'DELETE',
+        headers: { ...headers }
     }).then(response => response.json())
 };

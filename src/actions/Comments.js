@@ -2,6 +2,7 @@ import * as API from '../utils/Api';
 
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 export function getCommentsAction (comments) {
     return {
@@ -22,4 +23,14 @@ export function submitCommentAction (comment) {
 } export const submitComment = ({ author, body, parentId }) => dispatch => (
     API.addComment({ author, body, parentId })
         .then(response => dispatch(submitCommentAction(response)))
+);
+
+export function deleteCommentAction (comment) {
+    return {
+        type: DELETE_COMMENT,
+        comment
+    }
+} export const deleteComment = (comment) => dispatch => (
+    API.deleteComment(comment)
+        .then(response => dispatch(deleteCommentAction(response)))
 );

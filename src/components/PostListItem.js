@@ -11,13 +11,28 @@ class PostListItem extends Component {
     handleDelete (post) {
         this.props.actions.deletePost(post);
 
-        if (this.props.singlePostPage === true) {
+        if (this.props.singlePostPage) {
             window.location.replace("/");
         }
     }
 
     render() {
-        const { post, actions } = this.props;
+        const { post, actions, singlePostPage } = this.props;
+
+        const commentsHashLink = singlePostPage ? (
+            <span>
+            </span>
+        ) : (
+            <span>
+                <HashLink to={`/${post.category}/${post.id}#comments`}>
+                    <span className="comment-counter">
+                        { post.commentCount }
+                    </span> comments
+                </HashLink>
+
+                <span className="separator"> | </span>
+            </span>
+        );
 
         return (
             <li className="post-item">
@@ -48,12 +63,7 @@ class PostListItem extends Component {
                 <hr/>
 
                 <div className="post-info">
-                    <HashLink to={`/${post.category}/${post.id}#comments`}>
-                        <span className="comment-counter">
-                        { post.commentCount }
-                        </span> comments
-                    </HashLink>
-                    <span className="separator"> | </span>
+                    { commentsHashLink }
 
                     <span className="timestamp">
                         { moment(post.timestamp).format('MMMM DD, YY') }
