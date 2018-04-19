@@ -549,9 +549,19 @@ textarea {
     color: #222;
 }
 
-.comments textarea {
-    max-width: 750px;
+.comment-form {
+    max-width: 700px;
+    margin-top: 50px;
+}
+
+.comments textarea,
+.comments input {
+    width: 100%;
     padding: 15px 20px;
+}
+
+.comments input {
+    padding: 15px 0;
 }
 
 .comments .btn-container {

@@ -1,20 +1,37 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import FontAwesome from "react-fontawesome";
+import * as commentActions from "../actions/Comments";
 import moment from "moment/moment";
+import FontAwesome from "react-fontawesome";
 
 class PostComments extends Component {
+    state = {
+        author: "",
+        body: ""
+    };
+
+    createComment = (event) => {
+        event.preventDefault();
+
+        const { author, body } = this.state;
+        let parentId  = this.props.postId;
+
+        this.setState({ author: "", body: "" });
+        return this.props.actions.submitComment({ author, body, parentId })
+    };
+
+
     render () {
         const { comments } = this.props;
 
         return (
-            <div className="comments">
+            <div className="comments" id="comments">
                 <h3>Comments
                     <span>({ comments.length })</span>
                 </h3>
 
                 { comments.map((comment) => (
-                    <div className="comment" key={comment.id}>
+                    <div className="comment" key={ comment.id }>
                         <div className="score-box">
                             <button>
                                 <FontAwesome name='caret-up' />
@@ -56,14 +73,36 @@ class PostComments extends Component {
 
                 <h3>Leave your comment</h3>
 
-                <textarea name="" id="" rows="5">
-                </textarea>
+                <form
+                    onSubmit={ this.createComment }
+                    className="comment-form"
+                    id="comment-form"
+                >
+                    <label>Author</label>
+                    <input
+                        type="text"
+                        value={ this.state.author }
+                        onChange={ (event) => this.setState({ author: event.target.value }) }
+                        spellCheck="false"
+                    />
 
-                <div className="btn-container">
-                    <button className="btn-default">
-                        Publish Comment
-                    </button>
-                </div>
+                    <label>Text</label>
+                    <textarea
+                        rows="5"
+                        spellCheck="false"
+                        value={ this.state.body }
+                        onChange={ (event) => this.setState({ body: event.target.value }) }
+                    />
+
+                    <div className="btn-container">
+                        <button
+                            type="submit"
+                            className="btn-default"
+                        >
+                            Publish Comment
+                        </button>
+                    </div>
+                </form>
             </div>
         )
     }
@@ -79,6 +118,7 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
     return {
         actions: {
+            submitComment: (properties) => dispatch(commentActions.submitComment(properties))
         }
     }
 }

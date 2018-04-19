@@ -78,3 +78,23 @@ export const fetchComments = (id) => {
     return fetch(`${api}/posts/${id}/comments`, { headers })
         .then(response => response.json())
 };
+
+
+export const addComment = ({ author, body, parentId }) => {
+    const comment = {
+        author,
+        body,
+        parentId,
+        id: uuidv4(),
+        timestamp: Date.now()
+    };
+
+    return fetch(`${api}/comments`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(comment)
+    }).then(response => response.json())
+};

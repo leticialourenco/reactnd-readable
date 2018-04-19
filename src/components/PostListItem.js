@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import { connect } from "react-redux";
 import * as postActions from "../actions/Posts";
 import moment from 'moment';
@@ -47,9 +48,11 @@ class PostListItem extends Component {
                 <hr/>
 
                 <div className="post-info">
-                    <span className="comment-counter">
+                    <HashLink to={`/${post.category}/${post.id}#comments`}>
+                        <span className="comment-counter">
                         { post.commentCount }
-                    </span> comments
+                        </span> comments
+                    </HashLink>
                     <span className="separator"> | </span>
 
                     <span className="timestamp">
@@ -89,4 +92,4 @@ function mapDispatchToProps (dispatch) {
     }
 }
 
-export default connect('',mapDispatchToProps)(PostListItem)
+export default connect('', mapDispatchToProps)(PostListItem)

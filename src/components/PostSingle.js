@@ -34,7 +34,7 @@ class PostSingle extends Component {
                                 <p>{ post.body }</p>
                             </div>
 
-                            <PostComments />
+                            <PostComments postId={post.id}/>
                         </main>
                     </div>
                 </div>
