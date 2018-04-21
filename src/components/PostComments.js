@@ -25,7 +25,7 @@ class PostComments extends Component {
     };
 
     render () {
-        const { comments } = this.props;
+        const { comments, actions } = this.props;
 
         const filteredComments = comments.filter(comment => !(comment.deleted));
 
@@ -39,7 +39,9 @@ class PostComments extends Component {
 
                     <div className="comment" key={ comment.id }>
                         <div className="score-box">
-                            <button>
+                            <button
+                                onClick={ () => actions.voteComment(comment, 'upVote') }
+                            >
                                 <FontAwesome name='caret-up' />
                             </button>
 
@@ -47,7 +49,9 @@ class PostComments extends Component {
                                 { comment.voteScore }
                             </span>
 
-                            <button>
+                            <button
+                                onClick={ () => actions.voteComment(comment, 'downVote') }
+                            >
                                 <FontAwesome name='caret-down' />
                             </button>
                         </div>
@@ -127,6 +131,7 @@ function mapDispatchToProps (dispatch) {
     return {
         actions: {
             submitComment: (properties) => dispatch(commentActions.submitComment(properties)),
+            voteComment: (comment, option) => dispatch(commentActions.voteComment(comment, option)),
             deleteComment: (comment) => dispatch(commentActions.deleteComment(comment))
         }
     }

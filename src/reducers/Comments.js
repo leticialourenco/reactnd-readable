@@ -1,6 +1,7 @@
 import {
     GET_COMMENTS,
     SUBMIT_COMMENT,
+    VOTE_COMMENT,
     DELETE_COMMENT
 } from "../actions/Comments";
 
@@ -15,6 +16,7 @@ function comments (state = [], action) {
             nextState.push(action.comment);
             return nextState;
 
+        case VOTE_COMMENT:
         case DELETE_COMMENT:
             let commentLocation;
 

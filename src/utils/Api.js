@@ -98,6 +98,17 @@ export const addComment = ({ author, body, parentId }) => {
     }).then(response => response.json())
 };
 
+export const voteComment = (comment, option) => {
+    return fetch(`${api}/comments/${comment.id}`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ option })
+    }).then(response => response.json())
+};
+
 export const deleteComment = (comment) => {
     return fetch(`${api}/comments/${comment.id}`, {
         method: 'DELETE',
