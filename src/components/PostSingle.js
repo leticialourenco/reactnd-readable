@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import PostListItem from "./PostListItem";
 import PostComments from "./PostComments";
+import PageNotFound from "./PageNotFound";
 import * as postActions from "../actions/Posts";
 import * as categoryActions from "../actions/Categories";
 import * as commentActions from "../actions/Comments";
@@ -18,6 +19,10 @@ class PostSingle extends Component {
 
     render() {
         const { post } = this.props;
+
+        if (post.error || !(post.id) ) {
+            return (<PageNotFound type={"post"}/>);
+        }
 
         return (
             <div className="content single-post wrapper">

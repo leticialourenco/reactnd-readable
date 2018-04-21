@@ -105,7 +105,8 @@ a:active {
     color: #ff3f18;
 }
 
-.btn-default {
+.btn-default,
+.btn-primary {
     background: #ff3f18;
     color: #fff;
     border: 0;
@@ -119,6 +120,9 @@ a:active {
     -webkit-appearance: none;
 }
 
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
 .btn-default:hover,
 .btn-default:focus,
 .btn-default:active {
@@ -127,6 +131,25 @@ a:active {
     border-bottom-color: #222;
     -webkit-appearance: none;
 }
+
+.btn-primary {
+    padding: 5px 15px 5px 13px;
+    background: #333;
+    margin-right: 30px;
+    border: none;
+}
+
+.btn-primary span {
+    padding-right: 15px;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background: #333;
+    opacity: .8;
+}
+
 
 /* Header
  */

@@ -71,7 +71,7 @@ class PostComments extends Component {
     render () {
         const { comments, actions } = this.props;
 
-        const filteredComments = comments.filter(comment => !(comment.deleted));
+        const filteredComments = comments.filter(comment => !(comment.deleted) && !(comment.parentDeleted));
 
         return (
             <div className="comments" id="comments">
