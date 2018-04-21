@@ -28,35 +28,43 @@ class PostComments extends Component {
             id: comment.id
         });
 
-        let authorInput = document.getElementById("authorInput");
-        authorInput.classList.add("disabled");
-        authorInput.disabled = true;
-
-        let editButton = document.getElementById("editButton");
-        editButton.style.display = "block";
-
-        let createButton = document.getElementById("createButton");
-        createButton.style.display = "none";
+        this.handleFormChanges("startEditing");
     };
 
     editComment = (event) => {
         event.preventDefault();
 
-        let authorInput = document.getElementById("authorInput");
-        authorInput.classList.remove("disabled");
-        authorInput.disabled = false;
-
-        let editButton = document.getElementById("editButton");
-        editButton.style.display = "none";
-
-        let createButton = document.getElementById("createButton");
-        createButton.style.display = "block";
+        this.handleFormChanges("finishEditing");
 
         this.setState({ author: "", body: "" });
         return this.props.actions.editComment(this.state);
     };
 
-    handleDelete (comment) {
+    handleFormChanges = (option) => {
+        let authorInput = document.getElementById("authorInput");
+        let editButton = document.getElementById("editButton");
+        let createButton = document.getElementById("createButton");
+
+        if (option === "startEditing") {
+            authorInput.classList.add("disabled");
+            authorInput.disabled = true;
+            editButton.style.display = "block";
+            createButton.style.display = "none";
+            document.getElementById('comment-form').scrollIntoView({
+                behavior: 'smooth'
+            });
+        } else {
+            authorInput.classList.remove("disabled");
+            authorInput.disabled = false;
+            editButton.style.display = "none";
+            createButton.style.display = "block";
+            document.getElementById(`${this.state.id}`).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    handleDelete = (comment) => {
         this.props.actions.deleteComment(comment);
     };
 
@@ -73,7 +81,7 @@ class PostComments extends Component {
 
                 { filteredComments.map((comment) => (
 
-                    <div className="comment" key={ comment.id }>
+                    <div className="comment" id={ comment.id } key={ comment.id }>
                         <div className="score-box">
                             <button
                                 onClick={ () => actions.voteComment(comment, 'upVote') }
