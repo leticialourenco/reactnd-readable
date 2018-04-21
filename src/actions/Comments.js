@@ -2,6 +2,7 @@ import * as API from '../utils/Api';
 
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';
+export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const VOTE_COMMENT = 'VOTE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 
@@ -24,6 +25,17 @@ export function submitCommentAction (comment) {
 } export const submitComment = ({ author, body, parentId }) => dispatch => (
     API.addComment({ author, body, parentId })
         .then(response => dispatch(submitCommentAction(response)))
+);
+
+
+export function editCommentAction (comment) {
+    return {
+        type: EDIT_COMMENT,
+        comment
+    }
+} export const editComment = (comment) => dispatch => (
+    API.editComment(comment)
+        .then(response => dispatch(editCommentAction(response)))
 );
 
 

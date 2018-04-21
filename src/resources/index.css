@@ -490,7 +490,8 @@ textarea {
     margin-top: 0;
 }
 
-.post-edit .disabled {
+.post-edit .disabled,
+.comment-form .disabled {
     opacity: .5;
 }
 

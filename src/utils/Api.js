@@ -98,6 +98,23 @@ export const addComment = ({ author, body, parentId }) => {
     }).then(response => response.json())
 };
 
+
+export const editComment = (comment) => {
+    const commentUpdate = {
+        timestamp: Date.now(),
+        body: comment.body
+    };
+
+    return fetch(`${api}/comments/${comment.id}`, {
+        method: 'PUT',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(commentUpdate)
+    }).then(response => response.json())
+};
+
 export const voteComment = (comment, option) => {
     return fetch(`${api}/comments/${comment.id}`, {
         method: 'POST',

@@ -7,7 +7,8 @@ import FontAwesome from "react-fontawesome";
 class PostComments extends Component {
     state = {
         author: "",
-        body: ""
+        body: "",
+        id: ""
     };
 
     createComment = (event) => {
@@ -18,6 +19,41 @@ class PostComments extends Component {
 
         this.setState({ author: "", body: "" });
         return this.props.actions.submitComment({ author, body, parentId })
+    };
+
+    addDataToForm = (comment) => {
+        this.setState({
+            author: comment.author,
+            body: comment.body,
+            id: comment.id
+        });
+
+        let authorInput = document.getElementById("authorInput");
+        authorInput.classList.add("disabled");
+        authorInput.disabled = true;
+
+        let editButton = document.getElementById("editButton");
+        editButton.style.display = "block";
+
+        let createButton = document.getElementById("createButton");
+        createButton.style.display = "none";
+    };
+
+    editComment = (event) => {
+        event.preventDefault();
+
+        let authorInput = document.getElementById("authorInput");
+        authorInput.classList.remove("disabled");
+        authorInput.disabled = false;
+
+        let editButton = document.getElementById("editButton");
+        editButton.style.display = "none";
+
+        let createButton = document.getElementById("createButton");
+        createButton.style.display = "block";
+
+        this.setState({ author: "", body: "" });
+        return this.props.actions.editComment(this.state);
     };
 
     handleDelete (comment) {
@@ -67,7 +103,9 @@ class PostComments extends Component {
                             </span>
 
                             <span className="separator"> | </span>
-                            <span><a href="/">Edit</a></span>
+                            <button onClick={ () => this.addDataToForm(comment) }>
+                                Edit
+                            </button>
 
                             <span className="separator"> | </span>
                             <button onClick={ () => this.handleDelete(comment) } >
@@ -86,7 +124,6 @@ class PostComments extends Component {
                 <h3>Leave your comment</h3>
 
                 <form
-                    onSubmit={ this.createComment }
                     className="comment-form"
                     id="comment-form"
                 >
@@ -96,6 +133,7 @@ class PostComments extends Component {
                         value={ this.state.author }
                         onChange={ (event) => this.setState({ author: event.target.value }) }
                         spellCheck="false"
+                        id="authorInput"
                     />
 
                     <label>Text</label>
@@ -108,10 +146,22 @@ class PostComments extends Component {
 
                     <div className="btn-container">
                         <button
+                            onClick={ this.createComment }
                             type="submit"
                             className="btn-default"
+                            id="createButton"
                         >
                             Publish Comment
+                        </button>
+
+                        <button
+                            onClick={ this.editComment }
+                            type="submit"
+                            className="btn-default"
+                            id="editButton"
+                            style={{ display: 'none' }}
+                        >
+                            Save Comment
                         </button>
                     </div>
                 </form>
@@ -131,6 +181,7 @@ function mapDispatchToProps (dispatch) {
     return {
         actions: {
             submitComment: (properties) => dispatch(commentActions.submitComment(properties)),
+            editComment: (comment) => dispatch(commentActions.editComment(comment)),
             voteComment: (comment, option) => dispatch(commentActions.voteComment(comment, option)),
             deleteComment: (comment) => dispatch(commentActions.deleteComment(comment))
         }
