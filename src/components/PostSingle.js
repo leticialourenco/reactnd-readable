@@ -8,6 +8,7 @@ import PageNotFound from "./PageNotFound";
 import * as postActions from "../actions/Posts";
 import * as categoryActions from "../actions/Categories";
 import * as commentActions from "../actions/Comments";
+import FontAwesome from "react-fontawesome";
 
 class PostSingle extends Component {
 
@@ -31,6 +32,14 @@ class PostSingle extends Component {
                         <Sidebar />
 
                         <main className="posts col-sm-12 col-md-10">
+                            <button
+                                className="btn btn-primary"
+                                onClick={ () => this.props.history.goBack()}
+                            >
+                                <FontAwesome name='caret-left'/>
+                                Back
+                            </button>
+
                             <PostListItem post={post} singlePostPage={true}/>
 
                             <hr/>
