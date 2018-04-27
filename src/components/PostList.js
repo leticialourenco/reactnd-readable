@@ -29,7 +29,7 @@ const sortingOptions = [
 class PostList extends Component {
     componentWillMount () {
         this.props.actions.getPosts();
-        this.props.actions.setCategory();
+        this.props.actions.setCategory(this.props.category);
     }
 
     componentDidMount () {
@@ -123,7 +123,7 @@ function mapDispatchToProps (dispatch) {
     return {
         actions: {
             getPosts: () => dispatch(postActions.getPosts()),
-            setCategory: (category) => dispatch(categoryActions.setCategory(category ? category.path : null)),
+            setCategory: (category) => dispatch(categoryActions.setCategory(category ? category : null)),
             sortPosts: (sortBy) => dispatch(postActions.sortPosts(sortBy))
         }
     }
