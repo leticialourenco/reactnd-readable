@@ -123,6 +123,7 @@ a:active {
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
+.btn-primary:focus:active,
 .btn-default:hover,
 .btn-default:focus,
 .btn-default:active {
@@ -130,6 +131,9 @@ a:active {
     color: #fff;
     border-bottom-color: #222;
     -webkit-appearance: none;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 .btn-primary {
@@ -146,7 +150,8 @@ a:active {
 
 .btn-primary:hover,
 .btn-primary:focus,
-.btn-primary:active {
+.btn-primary:active,
+.btn-primary:focus:active {
     background: #8a959e;
     opacity: .8;
 }

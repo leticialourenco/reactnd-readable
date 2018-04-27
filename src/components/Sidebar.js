@@ -46,11 +46,6 @@ class Sidebar extends Component {
                        rel="noopener noreferrer"
                     ><FontAwesome name="github"/></a>
 
-                    <a href="https://leticialourenco.com"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                    ><FontAwesome name="dribbble"/></a>
-
                     <br/>
                     by Leticia Lourenco
                 </div>
