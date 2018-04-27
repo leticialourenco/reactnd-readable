@@ -9,12 +9,12 @@ import FontAwesome from 'react-fontawesome';
 
 const sortingOptions = [
     {
-        option:"newest",
-        name: "Newest"
-    },
-    {
         option:"oldest",
         name: "Oldest"
+    },
+    {
+        option:"newest",
+        name: "Newest"
     },
     {
         option:"highest-rated",
@@ -30,6 +30,10 @@ class PostList extends Component {
     componentWillMount () {
         this.props.actions.getPosts();
         this.props.actions.setCategory();
+    }
+
+    componentDidMount () {
+        this.props.actions.sortPosts("oldest", this.state);
     }
 
     render() {
