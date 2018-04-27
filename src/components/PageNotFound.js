@@ -10,18 +10,21 @@ function PageNotFound (type) {
                     <Sidebar />
 
                     <main className="posts col-sm-12 col-md-10">
-                        <p className="post-item">
-                            <button
-                                className="btn btn-primary"
-                            >
-                                <FontAwesome name='caret-left'/>
-                                Back
-                            </button>
-
+                        <p className="post-item error-message">
                             { (type.type === "post") ?
-                                <span>Sorry, the post you are trying to find either doesn't exist or has been deleted.</span>
-                                :
-                                <span>Sorry, no results found here.</span>
+                                <span>
+                                    <FontAwesome
+                                        name='trash'
+                                    />
+                                    Sorry, the post you are trying to find either doesn't exist or has been deleted.
+                                </span>
+                            :
+                                <span>
+                                    <FontAwesome
+                                        name='ban'
+                                    />
+                                    Sorry, no results were found here. Feel free to start your own thread.
+                                </span>
                             }
                         </p>
                     </main>

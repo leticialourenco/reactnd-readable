@@ -150,6 +150,12 @@ a:active {
     opacity: .8;
 }
 
+.error-message .fa {
+    padding-right: 12px;
+    font-size: 15px;
+    color: #ff3f18;
+}
+
 
 /* Header
  */
