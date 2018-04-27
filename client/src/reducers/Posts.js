@@ -6,7 +6,7 @@ import {
     VOTE_POST,
     DELETE_POST,
     SORT_POSTS
-} from "../actions/Posts";
+} from '../actions/Posts';
 
 import { postsSorter } from '../utils/PostsSorterHelper';
 

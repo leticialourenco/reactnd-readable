@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
 import { Link, withRouter } from 'react-router-dom';
 
-import PostEdit from "./PostEdit";
-import PostSubmit from "./PostSubmit";
-import PostList from "./PostList";
-import PostSingle from "./PostSingle";
-import PageNotFound from "./PageNotFound";
+import PostEdit from './PostEdit';
+import PostSubmit from './PostSubmit';
+import PostList from './PostList';
+import PostSingle from './PostSingle';
+import PageNotFound from './PageNotFound';
 
 import logo from '../resources/images/logo-300px.png';
 

@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import * as postActions from "../actions/Posts";
-import * as categoryActions from "../actions/Categories";
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import * as postActions from '../actions/Posts';
+import * as categoryActions from '../actions/Categories';
+
 import FontAwesome from 'react-fontawesome';
 
 class SubmitPost extends Component {
     state = {
-        title: "",
-        author: "",
-        category: "",
-        body: ""
+        title: '',
+        author: '',
+        category: '',
+        body: ''
     };
 
     createPost = (event) => {

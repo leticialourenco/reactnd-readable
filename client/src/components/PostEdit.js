@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import * as postActions from "../actions/Posts";
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import * as postActions from '../actions/Posts';
 import FontAwesome from 'react-fontawesome';
 
 class PostEdit extends Component {
     state = {
-        title: "",
-        author: "",
-        category: "",
-        body: "",
-        id: ""
+        title: '',
+        author: '',
+        category: '',
+        body: '',
+        id: ''
     };
 
     addDataToForm = () => {
@@ -90,7 +90,7 @@ class PostEdit extends Component {
                                         cols="30"
                                         rows="10"
                                         spellCheck="false"
-                                        value={this.state.body}
+                                        value={ this.state.body }
                                         onChange={ (event) => this.setState({ body: event.target.value }) }
                                     />
 

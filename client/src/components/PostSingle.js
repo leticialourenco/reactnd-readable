@@ -1,14 +1,17 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import Sidebar from "./Sidebar";
-import PostListItem from "./PostListItem";
-import PostComments from "./PostComments";
-import PageNotFound from "./PageNotFound";
-import * as postActions from "../actions/Posts";
-import * as categoryActions from "../actions/Categories";
-import * as commentActions from "../actions/Comments";
-import FontAwesome from "react-fontawesome";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import Sidebar from './Sidebar';
+import PostListItem from './PostListItem';
+import PostComments from './PostComments';
+import PageNotFound from './PageNotFound';
+
+import * as postActions from '../actions/Posts';
+import * as categoryActions from '../actions/Categories';
+import * as commentActions from '../actions/Comments';
+
+import FontAwesome from 'react-fontawesome';
 
 class PostSingle extends Component {
 
@@ -22,7 +25,7 @@ class PostSingle extends Component {
         const { post } = this.props;
 
         if (post.error || !(post.id) ) {
-            return (<PageNotFound type={"post"}/>);
+            return (<PageNotFound type={'post'}/>);
         }
 
         return (

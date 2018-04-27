@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
-import { connect } from "react-redux";
-import * as postActions from "../actions/Posts";
+import { connect } from 'react-redux';
+
+import * as postActions from '../actions/Posts';
+
 import moment from 'moment';
 import FontAwesome from 'react-fontawesome';
 
@@ -12,7 +14,7 @@ class PostListItem extends Component {
         this.props.actions.deletePost(post);
 
         if (this.props.singlePostPage) {
-            window.location.replace("/");
+            window.location.replace('/');
         }
     }
 

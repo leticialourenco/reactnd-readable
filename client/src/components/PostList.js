@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Sidebar from './Sidebar';
+
 import PostListItem from './PostListItem';
-import PageNotFound from "./PageNotFound";
+import PageNotFound from './PageNotFound';
+
 import * as postActions from '../actions/Posts';
 import * as categoryActions from '../actions/Categories';
+
 import FontAwesome from 'react-fontawesome';
 
 const sortingOptions = [
     {
-        option:"oldest",
-        name: "Oldest"
+        option:'oldest',
+        name: 'Oldest'
     },
     {
-        option:"newest",
-        name: "Newest"
+        option:'newest',
+        name: 'Newest'
     },
     {
-        option:"highest-rated",
-        name: "Highest Rated"
+        option:'highest-rated',
+        name: 'Highest Rated'
     },
     {
-        option:"lowest-rated",
-        name: "Lowest Rated"
+        option:'lowest-rated',
+        name: 'Lowest Rated'
     }
 ];
 
@@ -33,7 +36,7 @@ class PostList extends Component {
     }
 
     componentDidMount () {
-        this.props.actions.sortPosts("oldest", this.state);
+        this.props.actions.sortPosts('oldest', this.state);
     }
 
     render() {
@@ -44,7 +47,7 @@ class PostList extends Component {
         );
 
         if (filteredPosts.length === 0) {
-            return (<PageNotFound type={"category"} />)
+            return (<PageNotFound type={'category'} />)
         }
 
         return (
@@ -66,7 +69,7 @@ class PostList extends Component {
 
                                                 { sortingOptions.map((item) => (
                                                     <li key={item.option} className="sort-option">
-                                                        <a onClick={() => actions.sortPosts(item.option)}
+                                                        <a onClick={ () => actions.sortPosts(item.option) }
                                                            className={ sortBy === item.option ? 'active' : '' }
                                                         >  { item.name } </a>
                                                     </li>

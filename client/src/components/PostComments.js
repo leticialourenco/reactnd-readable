@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import * as commentActions from "../actions/Comments";
-import moment from "moment/moment";
-import FontAwesome from "react-fontawesome";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as commentActions from '../actions/Comments';
+import moment from 'moment/moment';
+import FontAwesome from 'react-fontawesome';
 
 class PostComments extends Component {
     state = {
-        author: "",
-        body: "",
-        id: ""
+        author: '',
+        body: '',
+        id: ''
     };
 
     createComment = (event) => {
@@ -17,7 +17,7 @@ class PostComments extends Component {
         const { author, body } = this.state;
         let parentId  = this.props.postId;
 
-        this.setState({ author: "", body: "" });
+        this.setState({ author: '', body: '' });
         return this.props.actions.submitComment({ author, body, parentId })
     };
 
@@ -28,36 +28,36 @@ class PostComments extends Component {
             id: comment.id
         });
 
-        this.handleFormChanges("startEditing");
+        this.handleFormChanges('startEditing');
     };
 
     editComment = (event) => {
         event.preventDefault();
 
-        this.handleFormChanges("finishEditing");
+        this.handleFormChanges('finishEditing');
 
-        this.setState({ author: "", body: "" });
+        this.setState({ author: '', body: '' });
         return this.props.actions.editComment(this.state);
     };
 
     handleFormChanges = (option) => {
-        let authorInput = document.getElementById("authorInput");
-        let editButton = document.getElementById("editButton");
-        let createButton = document.getElementById("createButton");
+        let authorInput = document.getElementById('authorInput');
+        let editButton = document.getElementById('editButton');
+        let createButton = document.getElementById('createButton');
 
-        if (option === "startEditing") {
-            authorInput.classList.add("disabled");
+        if (option === 'startEditing') {
+            authorInput.classList.add('disabled');
             authorInput.disabled = true;
-            editButton.style.display = "block";
-            createButton.style.display = "none";
+            editButton.style.display = 'block';
+            createButton.style.display = 'none';
             document.getElementById('comment-form').scrollIntoView({
                 behavior: 'smooth'
             });
         } else {
-            authorInput.classList.remove("disabled");
+            authorInput.classList.remove('disabled');
             authorInput.disabled = false;
-            editButton.style.display = "none";
-            createButton.style.display = "block";
+            editButton.style.display = 'none';
+            createButton.style.display = 'block';
             document.getElementById(`${this.state.id}`).scrollIntoView({
                 behavior: 'smooth'
             });

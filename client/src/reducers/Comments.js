@@ -4,7 +4,7 @@ import {
     EDIT_COMMENT,
     VOTE_COMMENT,
     DELETE_COMMENT
-} from "../actions/Comments";
+} from '../actions/Comments';
 
 function comments (state = [], action) {
     const nextState = [ ...state];

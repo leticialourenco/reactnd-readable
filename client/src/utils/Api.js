@@ -1,6 +1,6 @@
-import uuidv4 from "uuid/v4";
-const api = "http://localhost:3001";
-let token = "ow9e-8hdo-j092-j9ld";
+import uuidv4 from 'uuid/v4';
+const api = 'http://localhost:3001';
+let token = 'ow9e-8hdo-j092-j9ld';
 
 const headers = {
     'Accept': 'application/json',

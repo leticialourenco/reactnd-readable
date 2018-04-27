@@ -1,9 +1,9 @@
 import {
     GET_CATEGORIES,
     SET_CATEGORY
-} from "../actions/Categories";
+} from '../actions/Categories';
 
-function categories (state = {categories: []}, action) {
+function categories (state = { categories: [] }, action) {
     switch (action.type) {
         case GET_CATEGORIES:
             return action.categories;
